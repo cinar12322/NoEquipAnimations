@@ -1,0 +1,18 @@
+# C# / .NET compiled binaries and intermediate build folders
+[Bb]in/
+[Oo]bj/
+
+# User-specific configuration files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# MSBuild / Roslyn files
+.vs/
+.idea/
+
+# Thunderstore compiled outputs and ZIP archives
+*.zip
+release_package/*.dll
+release_package/*.pdb

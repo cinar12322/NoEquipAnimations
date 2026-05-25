@@ -1,0 +1,63 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+    <AssemblyName>NoEquipAnimation</AssemblyName>
+    <Product>NoEquipAnimation</Product>
+    <Version>1.0.0</Version>
+    <Description>Disables weapon and arm equip animations in ULTRAKILL.</Description>
+    <LangVersion>latest</LangVersion>
+    <RestoreAdditionalProjectSources>
+      https://api.nuget.org/v3/index.json
+    </RestoreAdditionalProjectSources>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+  </PropertyGroup>
+
+  <!-- Import detected values from the build script -->
+  <Import Project="Directory.Build.props" Condition="Exists('Directory.Build.props')" />
+
+  <PropertyGroup>
+    <!-- Fallback if properties not loaded -->
+    <UltrakillPath Condition="'$(UltrakillPath)' == ''">C:\Program Files (x86)\Steam\steamapps\common\ULTRAKILL</UltrakillPath>
+    <HasPluginConfigurator Condition="'$(HasPluginConfigurator)' == ''">false</HasPluginConfigurator>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>$(UltrakillPath)\ULTRAKILL_Data\Managed\Assembly-CSharp.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>$(UltrakillPath)\ULTRAKILL_Data\Managed\UnityEngine.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>$(UltrakillPath)\ULTRAKILL_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.AnimationModule">
+      <HintPath>$(UltrakillPath)\ULTRAKILL_Data\Managed\UnityEngine.AnimationModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.InputLegacyModule">
+      <HintPath>$(UltrakillPath)\ULTRAKILL_Data\Managed\UnityEngine.InputLegacyModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="BepInEx">
+      <HintPath>$(UltrakillPath)\BepInEx\core\BepInEx.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="0Harmony">
+      <HintPath>$(UltrakillPath)\BepInEx\core\0Harmony.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="PluginConfigurator" Condition="'$(HasPluginConfigurator)' == 'true'">
+      <HintPath>$(UltrakillPath)\BepInEx\plugins\plugins\PluginConfigurator\PluginConfigurator.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+
+  <PropertyGroup Condition="'$(HasPluginConfigurator)' == 'true'">
+    <DefineConstants>$(DefineConstants);PLUGIN_CONFIGURATOR</DefineConstants>
+  </PropertyGroup>
+
+</Project>
