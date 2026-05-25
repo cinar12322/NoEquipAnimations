@@ -68,8 +68,8 @@ namespace NoEquipAnimation
                 Config.Save();
 
                 // nextValue=true → animasyon KAPALI (kırmızı), false → animasyon AÇIK (yeşil)
-                string status = nextValue ? "<color=red>KAPALI</color>" : "<color=lime>AÇIK</color>";
-                Logger.LogInfo($"Equip animasyonları: {(nextValue ? "Kapalı" : "Açık")}");
+                string status = nextValue ? "<color=red>■</color>" : "<color=lime>■</color>";
+                Logger.LogInfo($"Equip animasyonları: {(nextValue ? "Kapalı" : "AÇIK")}");
 
                 try
                 {
