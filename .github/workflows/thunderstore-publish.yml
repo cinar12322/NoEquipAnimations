@@ -19,9 +19,9 @@ jobs:
         run: |
           powershell -Command "Compress-Archive -Path manifest.json, icon.png, README.md, bin/Release/*.dll -DestinationPath NoEquipAnimation-${{ github.ref_name }}.zip"
       - name: Install Thunderstore CLI
-        run: pip install thunderstore-cli
+        run: dotnet tool install -g ThunderstoreCLI
       - name: Publish to Thunderstore
         env:
           THUNDERSTORE_TOKEN: ${{ secrets.THUNDERSTORE_TOKEN }}
         run: |
-          thunderstore upload --file NoEquipAnimation-${{ github.ref_name }}.zip --namespace cinar12322 --mod-name NoEquipAnimation --version ${{ github.ref_name }} --description "ULTRAKILL No Equip Animation mod" --website-url "https://github.com/cinar12322/NoEquipAnimation" --token $THUNDERSTORE_TOKEN
+          tcli publish --file NoEquipAnimation-${{ github.ref_name }}.zip --package-namespace cinar12322 --package-name NoEquipAnimation --package-version ${{ github.ref_name }} --token $THUNDERSTORE_TOKEN
