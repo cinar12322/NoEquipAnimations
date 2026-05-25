@@ -17,7 +17,7 @@ jobs:
         run: dotnet build "ultrakill no unequip animation mod.csproj" --configuration Release
       - name: Create zip package
         run: |
-          powershell -Command "Compress-Archive -Path manifest.json, icon.png, README.md, bin/Release/netstandard2.0/*.dll -DestinationPath NoEquipAnimation-${{ github.ref_name }}.zip"
+          powershell -Command "Compress-Archive -Path manifest.json, icon.png, README.md, bin/Release/*.dll -DestinationPath NoEquipAnimation-${{ github.ref_name }}.zip"
       - name: Install Thunderstore CLI
         run: pip install thunderstore-cli
       - name: Publish to Thunderstore
