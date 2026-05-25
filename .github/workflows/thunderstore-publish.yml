@@ -1,0 +1,27 @@
+name: Thunderstore Publish
+on:
+  push:
+    tags:
+      - 'v*'
+jobs:
+  build-and-publish:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '7.x'
+      - name: Build solution
+        run: dotnet build "ultrakill no unequip animation mod.csproj" --configuration Release
+      - name: Create zip package
+        run: |
+          powershell -Command "Compress-Archive -Path manifest.json, bin/Release/netstandard2.0/*.dll -DestinationPath NoEquipAnimation-${{ github.ref_name }}.zip"
+      - name: Install Thunderstore CLI
+        run: pip install thunderstore-cli
+      - name: Publish to Thunderstore
+        env:
+          THUNDERSTORE_TOKEN: ${{ secrets.THUNDERSTORE_TOKEN }}
+        run: |
+          thunderstore upload --file NoEquipAnimation-${{ github.ref_name }}.zip --namespace cinar12322 --mod-name NoEquipAnimation --version ${{ github.ref_name }} --description "ULTRAKILL No Equip Animation mod" --website-url "https://github.com/cinar12322/NoEquipAnimation" --token $THUNDERSTORE_TOKEN
