@@ -68,13 +68,13 @@ namespace NoEquipAnimation
                 Config.Save();
 
                 // nextValue=true → animasyon KAPALI (kırmızı), false → animasyon AÇIK (yeşil)
-                string status = nextValue ? "<color=red>■</color>" : "<color=lime>■</color>";
-                Logger.LogInfo($"Equip animasyonları: {(nextValue ? "Kapalı" : "AÇIK")}");
+                string status = nextValue ? "<color=red>Closed</color>" : "<color=lime>Open</color>";
+                Logger.LogInfo($"Equip animations: {(nextValue ? "Closed" : "Open")}");
 
                 try
                 {
                     if (MonoSingleton<HudMessageReceiver>.Instance != null)
-                        MonoSingleton<HudMessageReceiver>.Instance.SendHudMessage($"Equip Animasyonu: {status}", "", "", 0, false);
+                        MonoSingleton<HudMessageReceiver>.Instance.SendHudMessage($"Equip Animation: {status}", "", "", 0, false);
                 }
                 catch { }
             }
