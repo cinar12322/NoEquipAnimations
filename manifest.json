@@ -1,0 +1,10 @@
+{
+  "name": "NoEquipAnimation",
+  "author": "cinar12322",
+  "description": "Disables weapon and arm equip animations in ULTRAKILL.",
+  "website_url": "https://github.com/cinar12322/NoEquipAnimations",
+  "version_number": "1.0.0",
+  "dependencies": [],
+  "game_version": "1.0.0",
+  "bepinex_version": "5.4.21"
+}
