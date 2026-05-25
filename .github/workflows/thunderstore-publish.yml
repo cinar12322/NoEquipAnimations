@@ -19,9 +19,10 @@ jobs:
         run: |
           powershell -Command "Compress-Archive -Path manifest.json, icon.png, README.md, bin/Release/*.dll -DestinationPath NoEquipAnimation-${{ github.ref_name }}.zip"
       - name: Install Thunderstore CLI
-        run: dotnet tool install -g ThunderstoreCLI
+        run: dotnet tool install -g tcli
       - name: Publish to Thunderstore
         env:
           THUNDERSTORE_TOKEN: ${{ secrets.THUNDERSTORE_TOKEN }}
+          NODE_OPTIONS: --openssl-legacy-provider
         run: |
           tcli publish --file NoEquipAnimation-${{ github.ref_name }}.zip --package-namespace cinar12322 --package-name NoEquipAnimation --package-version ${{ github.ref_name }} --token $THUNDERSTORE_TOKEN
