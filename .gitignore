@@ -16,3 +16,4 @@
 *.zip
 release_package/*.dll
 release_package/*.pdb
+release_package/

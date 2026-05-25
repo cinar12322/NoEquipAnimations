@@ -1,9 +1,0 @@
-{
-    "name": "NoEquipAnimations",
-    "version_number": "1.0.0",
-    "website_url": "https://github.com/antigravity/no-equip-animations",
-    "description": "Instantly skips drawing and equip animations for weapons and arms/fists in ULTRAKILL. High performance, toggleable in-game (default: H). Fully integrated with settings menu.",
-    "dependencies": [
-        "BepInEx-BepInExPack-5.4.2100"
-    ]
-}
